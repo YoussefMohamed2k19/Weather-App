@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, intial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="id=edge" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Weather App</title>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h2 class="title">Weather App</h2>
+    </header>
+  <main id="main">
+      <div class="location">
+        <div class="icon-holder">
+          <h1 id="" class="location-timezone"></h1>
+          <canvas class="icon" width="128" height="128"></canvas>
+        </div>
+      </div>
+      <div class="temperature">
+          <h2 id="temp"><span class="temperature-degree" id="degree"></span></h2>
+          <div class="temperature-description"></div>
+      </div>
+      <div class="wind">
+        <div id="wind-text"></div>
+        <div class="text">Wind Speed</div>
+      </div>
+  </main>
+
+  </div>
+  <p class="copyright">Copyright © Youssef Mohamed 2019. All Rights Reserved. Made with the openweathermap API.</p>
+    <script  type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script  type="text/javascript" src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script  type="text/javascript" src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+    <script  type="text/javascript" src="skycons.js"></script>
+    <script  type="text/javascript" src="app.js"></script>
+</body>
+
+</html>
