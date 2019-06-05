@@ -5,9 +5,10 @@ window.addEventListener("load", () => {
       let temperatureDegree = document.querySelector('.temperature-degree');
       let locationTimezone = document.querySelector('.location-timezone');
       let temperatureSection = document.querySelector('.temperature');
+      let windSpeed = document.querySelector('.wind-text');
       const temperatureSpan = document.querySelector('.temperature span');
 
-      alert("Open Gps to allow site work, provide information based on your geolocation.");
+      alert("Open Gps to allow widget work,It's based on your geolocation.");
       if(navigator.geolocation)
       {
         navigator.geolocation.getCurrentPosition(position => {
@@ -28,12 +29,15 @@ window.addEventListener("load", () => {
               temperatureDegree.textContent = temperature;
               temperatureDescription.textContent = summary;
               locationTimezone.textContent = data.timezone;
+              windSpeed.textContent = data.currently.windSpeed;
               // set formula for celsius
               let celsius = (temperature -32) * (5 / 9);
               //  set icons
               setIcons(icon, document.querySelector('.icon'));
               // change F to c
               document.getElementById("degree").textContent = Math.floor(celsius) + "°";
+              let windspeed = data.currently.windSpeed * 1.852;
+              document.getElementById("wind").textContent = Math.floor(windspeed) + " Km/h";
               /*  temperatureSection.addEventListener('click', () =>{
                   if(temperatureSpan.textContent =="F")
                   {
@@ -44,64 +48,6 @@ window.addEventListener("load", () => {
                     temperatureDegree.textContent = temperature;
                   }
                 })*/
-                var $windText = $("#wind-text");
-                function dataHandler(data)
-                {
-                  dataString = JSON.stringify(data);
-                  if (data.main.temp && data.sys)
-                  {
-
-                    // display wind speed
-                    if (data.wind)
-                    {
-                      var knots = data.wind.speed * 1.9438445;
-                      var km = knots * 1.852;
-                      $windText.html(km.toFixed(1) + " Km/h");
-                    }
-                  }
-                }
-
-                function getWeather(locdata)
-                {
-                  console.log("getWeather has been called.")
-                  var lat = locdata.lat;
-                  var lon = locdata.lon;
-                  var apiURI = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=6c788c55fe75c1f415d3cfdc814d0218";
-
-                  if (locdata)
-                    {
-                      console.log("success");
-                      $("#city-text").html(locdata.city );
-                    } else{
-                    console.log("fail");}
-
-                  //call weather api for weather data
-                  console.log("success getWeather");
-                  console.log(apiURI);
-                  return $.ajax({
-                    url: apiURI,
-                    dataType: "json",
-                    type: "GET",
-                    async: "true",
-                  }).done(dataHandler);
-                }
-
-                var counter = 0;
-
-                function getLocation()
-                {
-                  console.log("Update# " + counter++);
-
-                  //call location api for location data
-                  return $.ajax
-                  ({
-                    url: "http://ip-api.com/json",
-                    dataType: "json",
-                    type: "GET",
-                    async: "true",
-                  });
-                }
-                var updateInterval = setInterval(getLocation().done(getWeather), 300000);
 
 
             });
