@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
       let windSpeed = document.querySelector('.wind-text');
       const temperatureSpan = document.querySelector('.temperature span');
 
-      alert("Open Gps to allow widget work,It's based on your geolocation.");
+      alert("Open Gps to allow site work,It's based on your geolocation.");
       if(navigator.geolocation)
       {
         navigator.geolocation.getCurrentPosition(position => {
